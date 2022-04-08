@@ -25,6 +25,7 @@ function paintFavoriteCocteles() {
 
     html += `<li class='drink  js_drink' id='${coctel.idDrink}'>`;
     html += `<div class='js_set'>`;
+    html += `<span class="x">X</span>`;
     html += `<img  class='js_photo' src='${imagenUrl}'>`;
     html += `<h2>${coctel.strDrink}</h2>`;
     html += `</div>`;
