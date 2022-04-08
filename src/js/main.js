@@ -6,13 +6,97 @@ const buttonReset = document.querySelector('.js_button_reset');
 const listDrink = document.querySelector('.js_list_drink');
 const listFavorite = document.querySelector('.js_list_favorite');
 let drinks = [];
+let favorites = [];
 
 // Funcion Manejadora
 
+function paintFavoriteCocteles() {
+  let html = '';
+
+  for (const coctel of favorites) {
+    //AQUI he creado un variable para decir qie si el li(coctel) no tiene url (osea si ees igual a null) que ponga una foto que yo he creado y sino que ponga ña que tiene
+    let imagenUrl = '';
+    if (coctel.strDrinkThumb === null) {
+      imagenUrl =
+        'https://via.placeholder.com/210x295/FF0000/FFFFFF%20C/O%20https://placeholder.com//?text=Cocteles';
+    } else {
+      imagenUrl = coctel.strDrinkThumb;
+    }
+
+    html += `<li class='drink  js_drink' id='${coctel.idDrink}'>`;
+    html += `<div class='js_set'>`;
+    html += `<img  class='js_photo' src='${imagenUrl}'>`;
+    html += `<h2>${coctel.strDrink}</h2>`;
+    html += `</div>`;
+    html += `</li>`;
+
+    listFavorite.innerHTML = html;
+  }
+}
+function paintCocteles() {
+  //renderizar HTML y la funcion de listenerCocteles
+  let html = '';
+
+  for (const coctel of drinks) {
+    //AQUI he creado un variable para decir qie si el li(coctel) no tiene url (osea si ees igual a null) que ponga una foto que yo he creado y sino que ponga ña que tiene
+    let imagenUrl = '';
+    if (coctel.strDrinkThumb === null) {
+      imagenUrl =
+        'https://via.placeholder.com/210x295/FF0000/FFFFFF%20C/O%20https://placeholder.com//?text=Cocteles';
+    } else {
+      imagenUrl = coctel.strDrinkThumb;
+    }
+    //AQUI he añadido una clase para aquellas li (coctele.idDrink) esten en favoritos
+    let classFavorite = '';
+    //esto me dice que si id de los favoritos coincide con el id de la bebida
+    const coctelFoundIndex = favorites.findIndex((fav) => {
+      return fav.idDrink === coctel.idDrink;
+    });
+    // si la constante devuelve !-1 significa que si es favorito por lo que hay que añadirle una clase
+    if (coctelFoundIndex !== -1) {
+      classFavorite = 'favoriteClass';
+    } else {
+      classFavorite = '';
+    }
+
+    html += `<li class='drink ${classFavorite} js_drink' id='${coctel.idDrink}'>`;
+    html += `<div class='js_set'>`;
+    html += `<img  class='js_photo' src='${imagenUrl}'>`;
+    html += `<h2>${coctel.strDrink}</h2>`;
+    html += `</div>`;
+    html += `</li>`;
+  }
+
+  listDrink.innerHTML = html;
+  listenerCocteles();
+}
+
 function handleClickCoctel(event) {
   event.preventDefault();
-  //lo de la izquierda es el contenedor (const o variable)y lo de la derecha del = es lo que lo quiero meter dentro del contenedor, el valor
-  listFavorite.innerHTML = event.currentTarget.html; //es el elmento donde se origino el evento, en este caso es el li.
+  //  lo de la izquierda es el contenedor (const o variable)y lo de la derecha del = es lo que lo quiero meter dentro del contenedor, el valor
+
+  //AQUI ESTAMOS AÑADIENDO UN LI A LA LISTA DE FAVORITOS, PERO ANTES TENEMOS QUE SABER SI ESTA O NO EN LA LISTA DE FAVORITOS
+
+  const idCoctelSelected = event.currentTarget.id;
+  console.log(idCoctelSelected);
+  //Primero miramos si esta en la lista de favoritos
+  const coctelFound = drinks.find((fav) => {
+    return fav.idDrink === idCoctelSelected;
+  });
+
+  //usamos el findIndex para que nos de el -1 sino esta en la lista de favoritos
+  const coctelFoundIndex = favorites.findIndex((fav) => {
+    return fav.idDrink === idCoctelSelected;
+  });
+  // aqui ya ponemos el condicional. si no esta en la lista lo anadiños a la lista de favoritos mediante un push y si ya esta en la lista, cuando hagamos el click lo eliminaremos de la lista usando un slice.
+  if (coctelFoundIndex === -1) {
+    favorites.push(coctelFound);
+  } else {
+    //quiero que no haga nada, que no lo añada a la lista de favoritos! (aqui poner lo del slice)
+  }
+  console.log(favorites);
+  paintCocteles();
+  paintFavoriteCocteles();
 }
 
 function listenerCocteles() {
@@ -23,21 +107,6 @@ function listenerCocteles() {
   }
 }
 
-function paintCocteles() {
-  //renderizar HTML y la funcion de listenerCocteles
-  let html = '';
-
-  for (const coctel of drinks) {
-    html += `<li class='drink  js_drink' id='${coctel.idDrink}'>`;
-    html += `<div class='js_set'>`;
-    html += `<img  class='js_photo' src='${coctel.strDrinkThumb}'>`;
-    html += `<h2>${coctel.strDrink}</h2>`;
-    html += `</div>`;
-    html += `</li>`;
-  }
-  listDrink.innerHTML = html;
-  listenerCocteles();
-}
 function handleSearch() {
   if (inputText.value !== '') {
     fetch(
