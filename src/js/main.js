@@ -51,7 +51,7 @@ function paintCocteles() {
     } else {
       imagenUrl = coctel.strDrinkThumb;
     }
-    //AQUI he añadido una clase para aquellas li (coctele.idDrink) esten en favoritos
+    //AQUI HE AÑADIDO UNA CLASE PARA AQUELLAS LI (COCTEL.IDDRINK) ESTEN EN FAVORITOS
     let classFavorite = '';
     //esto me dice que si id de los favoritos coincide con el id de la bebida
     const coctelFoundIndex = favorites.findIndex((fav) => {
@@ -59,7 +59,7 @@ function paintCocteles() {
     });
     // si la constante devuelve !-1 significa que si es favorito por lo que hay que añadirle una clase
     if (coctelFoundIndex !== -1) {
-      classFavorite = 'favoriteClass';
+      classFavorite = 'click_favorite';
     } else {
       classFavorite = '';
     }
