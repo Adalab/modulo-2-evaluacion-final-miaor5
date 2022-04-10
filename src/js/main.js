@@ -155,6 +155,7 @@ function handleDelet(event) {
 
   favorites.splice(coctelFoundIndex, 1);
   paintFavoriteCocteles();
+  paintCocteles();
 }
 
 function listenerX() {
