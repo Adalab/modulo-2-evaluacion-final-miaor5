@@ -5,8 +5,6 @@ const buttonSearch = document.querySelector('.js_button_search');
 const buttonReset = document.querySelector('.js_button_reset');
 const listDrink = document.querySelector('.js_list_drink');
 const listFavorite = document.querySelector('.js_list_favorite');
-const click = document.querySelector('.js_set-fav');
-const x = document.querySelector('.js_borrar');
 
 let drinks = [];
 let favorites = [];
@@ -26,16 +24,15 @@ function paintFavoriteCocteles() {
       imagenUrl = coctel.strDrinkThumb;
     }
 
-    html += `<li class='drink_fav  js_drink' id='${coctel.idDrink}'>`;
+    html += `<li class='drink_fav js_drink-fav js_drink' id='${coctel.idDrink}'>`;
     html += `<div class=' js_set-fav set_fav'>`;
     html += `<img  class='js_photo-fav' src='${imagenUrl}'>`;
     html += `<h2 class="name_drink-fav">${coctel.strDrink}</h2>`;
-    html += `<button class="js_borrar" id="borrar">X</button>`;
+    html += `<button class="js_delete" id="borrar">X</button>`;
     html += `</div>`;
     html += `</li>`;
-
-    listFavorite.innerHTML = html;
   }
+  listFavorite.innerHTML = html;
 }
 
 function paintCocteles() {
@@ -106,6 +103,8 @@ function handleClickCoctel(event) {
   // click.classList.add('click_favorite');//seria para ponerle clase cuando le den click
   paintCocteles();
   paintFavoriteCocteles();
+
+  listenerX();
 }
 
 function listenerCocteles() {
@@ -146,4 +145,33 @@ function handleSearch() {
 //   paintFavoriteCocteles();
 // }
 
+//AQUI  INTENTO DE BORRA MEDIANTE LA X
+
+function handleDelet(event) {
+  const liselected = event.currentTarget.id;
+  const coctelFoundIndex = favorites.findIndex((fav) => {
+    return fav.idDrink === liselected;
+  });
+
+  favorites.splice(coctelFoundIndex, 1);
+  paintFavoriteCocteles();
+}
+
+function listenerX() {
+  //aqui escucha cuando hay un click en alguno de las bebidas
+  const lifavorite = document.querySelectorAll('.js_drink-fav');
+  for (const item of lifavorite) {
+    item.addEventListener('click', handleDelet);
+  }
+}
+//AQUI INTENTO HACER QUE SE HAGA RESET
+function handleReset() {
+  //version 1 haciendo splice
+  // var favoritesDelete = favorites.splice(0, favorites.length);
+  //version 2 dicienodo que el array esta vacio
+  favorites = [];
+  console.log(favorites);
+  paintFavoriteCocteles();
+}
+buttonReset.addEventListener('click', handleReset);
 buttonSearch.addEventListener('click', handleSearch);
