@@ -1,27 +1,99 @@
-// body {
-//   padding: 2rem;
-//   height: 100vh;
-//   background-image: url('../images/bg-adalab.png');
-//   background-color: $color-bg;
-//   font-family: $font-main;
-// }
-
-.js_photo{
-    height: 150px;
-    width: 150px;
+body{
+    background-color:lightcoral;
+    color: white;
+    
 }
+.container{
+    text-align:center;
+    padding: 80px;
+     &_title{
+       padding-bottom:20px ;
+    }
+}
+
 
 
 .lists{
     display: flex;
+    justify-content: space-around;
+}
+
+.set{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+//seccion de la lista
+.section_list{
+    border: 3px solid black;
+    height: 300px;
+    width: 800px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    &-title{
+     text-align: center;
+     background-color: beige;
+     color: black;
+     margin-bottom: 30px;
+     font-size: 24px;
+    }
+    &-list{
+        display: flex;
+        list-style: none;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+    }
+}
+.drink{
+    height: 170px;
+    width: 150px;
+    text-align: center;
+    border: 1px solid black;
+}
+.name_drink{
+    text-align: center;
+    padding-top: 5px;
+}
+
+.js_photo{
+    height: 125px;
+    width: 148px;
+}
+
+//seccion de favoritos
+
+// .set_fav{
     
+// }
+
+.section_favorites{
+    border: 3px solid black;
+    background-color: li;
+    height: 300px;
+    width: 300px;
+
+    &-title{
+    text-align: center;
+    background-color: beige;
+    color: black;
+    }
+    &-list{
+      display: flex;
+      list-style: none;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+     }
 }
 
-.listDrink{
-    list-style: none;
-}
 
-.favoriteClass{
-    background-color: red;
-    border: 2px solid black;
+.js_photo-fav{
+ height: 125px;
+ width: 148px;
 }

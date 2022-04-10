@@ -24,12 +24,13 @@ function paintFavoriteCocteles() {
     }
 
     html += `<li class='drink  js_drink' id='${coctel.idDrink}'>`;
-    html += `<div class='js_set'>`;
-    html += `<span class="x">X</span>`;
-    html += `<img  class='js_photo' src='${imagenUrl}'>`;
+    html += `<div class=' set_fav'>`;
+    html += `<img  class='js_photo-fav' src='${imagenUrl}'>`;
     html += `<h2>${coctel.strDrink}</h2>`;
+    html += `<span class="x">X</span>`;
     html += `</div>`;
     html += `</li>`;
+    //html += `<input type="button" value="Reset">`;
 
     listFavorite.innerHTML = html;
   }
@@ -63,7 +64,7 @@ function paintCocteles() {
     html += `<li class='drink ${classFavorite} js_drink' id='${coctel.idDrink}'>`;
     html += `<div class='js_set'>`;
     html += `<img  class='js_photo' src='${imagenUrl}'>`;
-    html += `<h2>${coctel.strDrink}</h2>`;
+    html += `<h2 class="name_drink">${coctel.strDrink}</h2>`;
     html += `</div>`;
     html += `</li>`;
   }
@@ -95,6 +96,10 @@ function handleClickCoctel(event) {
   } else {
     //quiero que no haga nada, que no lo añada a la lista de favoritos! (aqui poner lo del slice)
   }
+
+  ///// guardo la lista de favorites en el ls
+  localStorage.setItem('listFavorites', JSON.stringify(favorites));
+
   console.log(favorites);
   paintCocteles();
   paintFavoriteCocteles();
@@ -123,4 +128,19 @@ function handleSearch() {
     listDrink.innerHTML = '';
   }
 }
+
+// //GUARDAR LOS LISTA DE FAVORITOS EN EL LOCAL STORAGE
+// const listOfFavoritesStorage = JSON.parse(
+//   localStorage.getItem('listFavorites')
+// ); //nombre con el que lo guarde
+
+// if (listOfFavoritesStorage !== null) {
+//   paintFavoriteCocteles(listOfFavoritesSorage);
+// } else {
+//   //Guardar la informacion en el ls
+//   localStorage.setItem('listFavorites', JSON.stringify(favorites));
+//   //renderizar HTML
+//   paintFavoriteCocteles();
+// }
+
 buttonSearch.addEventListener('click', handleSearch);
