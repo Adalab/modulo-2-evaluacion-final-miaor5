@@ -5,6 +5,9 @@ const buttonSearch = document.querySelector('.js_button_search');
 const buttonReset = document.querySelector('.js_button_reset');
 const listDrink = document.querySelector('.js_list_drink');
 const listFavorite = document.querySelector('.js_list_favorite');
+const click = document.querySelector('.js_set-fav');
+const x = document.querySelector('.js_borrar');
+
 let drinks = [];
 let favorites = [];
 
@@ -23,18 +26,18 @@ function paintFavoriteCocteles() {
       imagenUrl = coctel.strDrinkThumb;
     }
 
-    html += `<li class='drink  js_drink' id='${coctel.idDrink}'>`;
-    html += `<div class=' set_fav'>`;
+    html += `<li class='drink_fav  js_drink' id='${coctel.idDrink}'>`;
+    html += `<div class=' js_set-fav set_fav'>`;
     html += `<img  class='js_photo-fav' src='${imagenUrl}'>`;
-    html += `<h2>${coctel.strDrink}</h2>`;
-    html += `<span class="x">X</span>`;
+    html += `<h2 class="name_drink-fav">${coctel.strDrink}</h2>`;
+    html += `<button class="js_borrar" id="borrar">X</button>`;
     html += `</div>`;
     html += `</li>`;
-    //html += `<input type="button" value="Reset">`;
 
     listFavorite.innerHTML = html;
   }
 }
+
 function paintCocteles() {
   //renderizar HTML y la funcion de listenerCocteles
   let html = '';
@@ -94,13 +97,13 @@ function handleClickCoctel(event) {
   if (coctelFoundIndex === -1) {
     favorites.push(coctelFound);
   } else {
-    //quiero que no haga nada, que no lo añada a la lista de favoritos! (aqui poner lo del slice)
+    favorites.splice(coctelFoundIndex, 1);
   }
 
   ///// guardo la lista de favorites en el ls
   localStorage.setItem('listFavorites', JSON.stringify(favorites));
 
-  console.log(favorites);
+  // click.classList.add('click_favorite');//seria para ponerle clase cuando le den click
   paintCocteles();
   paintFavoriteCocteles();
 }
