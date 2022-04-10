@@ -170,8 +170,9 @@ function handleReset() {
   // var favoritesDelete = favorites.splice(0, favorites.length);
   //version 2 dicienodo que el array esta vacio
   favorites = [];
-  console.log(favorites);
+
   paintFavoriteCocteles();
+  paintCocteles();
 }
 buttonReset.addEventListener('click', handleReset);
 buttonSearch.addEventListener('click', handleSearch);
