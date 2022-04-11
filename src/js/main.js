@@ -1,11 +1,10 @@
 'use strict';
 
 const inputText = document.querySelector('.js_input_text');
-const buttonSearch = document.querySelector('.js_button_search');
 const buttonReset = document.querySelector('.js_button_reset');
 const listDrink = document.querySelector('.js_list_drink');
 const listFavorite = document.querySelector('.js_list_favorite');
-
+const form = document.querySelector('.js_container-form');
 let drinks = [];
 let favorites = [];
 
@@ -115,7 +114,8 @@ function listenerCocteles() {
   }
 }
 
-function handleSearch() {
+function handleSearch(event) {
+  event.preventDefault();
   if (inputText.value !== '') {
     fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`
@@ -129,21 +129,19 @@ function handleSearch() {
   } else {
     listDrink.innerHTML = '';
   }
+  //inputText.value = '';
 }
 
-// //GUARDAR LOS LISTA DE FAVORITOS EN EL LOCAL STORAGE
-// const listOfFavoritesStorage = JSON.parse(
-//   localStorage.getItem('listFavorites')
-// ); //nombre con el que lo guarde
+//GUARDAR LOS LISTA DE FAVORITOS EN EL LOCAL STORAGE
 
-// if (listOfFavoritesStorage !== null) {
-//   paintFavoriteCocteles(listOfFavoritesSorage);
-// } else {
-//   //Guardar la informacion en el ls
-//   localStorage.setItem('listFavorites', JSON.stringify(favorites));
-//   //renderizar HTML
-//   paintFavoriteCocteles();
-// }
+const listOfFavoritesStorage = JSON.parse(
+  localStorage.getItem('listFavorites')
+); //nombre con el que lo guarde
+
+if (listOfFavoritesStorage !== null) {
+  favorites = listOfFavoritesStorage;
+  paintFavoriteCocteles();
+}
 
 //AQUI  INTENTO DE BORRA MEDIANTE LA X
 
@@ -171,9 +169,10 @@ function handleReset() {
   // var favoritesDelete = favorites.splice(0, favorites.length);
   //version 2 dicienodo que el array esta vacio
   favorites = [];
-
+  inputText.value = '';
+  localStorage.setItem('listFavorites', JSON.stringify(favorites));
   paintFavoriteCocteles();
   paintCocteles();
 }
 buttonReset.addEventListener('click', handleReset);
-buttonSearch.addEventListener('click', handleSearch);
+form.addEventListener('submit', handleSearch);
