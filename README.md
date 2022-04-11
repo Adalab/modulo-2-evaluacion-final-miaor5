@@ -4,7 +4,7 @@
 
 El objetivo de este proyecto es la creación de un buscador que permita al cliente encontrar y guardar el coctel deseado de manera rapida y sencilla.
 
-[Puedes ver el proyecto entero en:](http://beta.adalab.es/modulo-2-evaluacion-final-miaor5/)
+##### Puedes ver el proyecto entero en: http://beta.adalab.es/modulo-2-evaluacion-final-miaor5/
 
 ## Las herramientas y lenguajes usados para el proyecto
 
