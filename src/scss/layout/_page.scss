@@ -1,18 +1,34 @@
 body{
     background-color:lightcoral;
-    color: white;
+    color: black;
+    font-size: 25px;
+    height: 700px;
     
 }
 .container{
     text-align:center;
-    padding: 80px;
+    padding: 60px;
      &_title{
-       padding-bottom:20px ;
+       padding-bottom:15px ;
     }
 }
 
-
-
+.js_input_text{
+    height: 30px;
+    width: 200px;
+    border: 2px solid black;
+    background-color: whitesmoke;
+}
+.js_button_search{
+    border-radius: 10px;
+    width: 60px;
+    background-color: whitesmoke;
+}
+.js_button_reset{
+    border-radius: 10px;
+    width: 60px;
+    background-color: whitesmoke;
+}
 .lists{
     display: flex;
     justify-content: space-around;
@@ -102,6 +118,7 @@ body{
     background-color: beige;
     color: black;
     margin-bottom: 15px;
+    font-size: 24px;
     }
     &-list{
       display: flex;
