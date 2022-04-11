@@ -1,10 +1,9 @@
-#Buscador de Cocteles
+# Buscador de Cocteles
 
-# Project Description
+## Project Description
 
 El objetivo de este proyecto es la creación de un buscador que permita al cliente encontrar y guardar el coctel deseado de manera rapida y sencilla.
 
-[Bucador](./public/assets/images/burcador.png)
 [Puedes ver el proyecto entero en:]()
 
 ## Las herramientas y lenguajes usados para el proyecto
