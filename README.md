@@ -4,7 +4,7 @@
 
 El objetivo de este proyecto es la creación de un buscador que permita al cliente encontrar y guardar el coctel deseado de manera rapida y sencilla.
 
-[Bucador](./src/images/burcador.png)
+[Bucador](./public/assets/images/burcador.png)
 [Puedes ver el proyecto entero en:]()
 
 ## Las herramientas y lenguajes usados para el proyecto
