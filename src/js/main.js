@@ -150,8 +150,8 @@ function handleDelet(event) {
   const coctelFoundIndex = favorites.findIndex((fav) => {
     return fav.idDrink === liselected;
   });
-
   favorites.splice(coctelFoundIndex, 1);
+  localStorage.setItem('listFavorites', JSON.stringify(favorites));
   paintFavoriteCocteles();
   paintCocteles();
 }
