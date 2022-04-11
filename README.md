@@ -1,6 +1,6 @@
 # Buscador de Cocteles
 
-## Project Description
+## Descripción del proyecto
 
 El objetivo de este proyecto es la creación de un buscador que permita al cliente encontrar y guardar el coctel deseado de manera rapida y sencilla.
 
